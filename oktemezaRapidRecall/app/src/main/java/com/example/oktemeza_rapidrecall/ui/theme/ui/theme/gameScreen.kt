@@ -83,7 +83,7 @@ fun gameScreen(
                         playerGuess,
                         sequenceToGuess.joinToString(""),
                         correct,
-                        guessCount
+                        (System.currentTimeMillis() / 1000).toInt()
                     )
                 )
             }
@@ -97,7 +97,9 @@ fun gameScreen(
             onDismissRequest = { },
             title = {Text("Enter Sequence Length (1-10)")},
             confirmButton = {
-                Button(onClick = {
+                Button(
+                    enabled = userLength.isNotEmpty(),
+                    onClick = {
                     val length = userLength.toInt()
 
                     sequenceToGuess.clear()
@@ -112,7 +114,11 @@ fun gameScreen(
             text = {
                 OutlinedTextField(
                     value = userLength,
-                    onValueChange = { userLength = it },
+                    onValueChange = {
+                        if (it.isEmpty() || (it.length == 1 && it[0] in '1'..'9')) {
+                            userLength = it
+                        }
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true
                 )

@@ -28,6 +28,9 @@ import androidx.compose.ui.draw.clip
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.oktemeza_rapidrecall.Log
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun logScreen(
@@ -61,7 +64,7 @@ fun logScreen(
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.Start
         ){
 
             Text(
@@ -84,10 +87,7 @@ fun logScreen(
                 fontSize = 18.sp
             )
 
-            Text(
-                "Time",
-                fontSize = 18.sp
-            )
+
         }
 
 
@@ -131,34 +131,36 @@ fun CityRow(log: Log, savedLog: (Log) -> Unit) {
         Text(
             text = log.length.toString() + "   ",
             fontSize = 24.sp,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(0.45f)
         )
 
         Text(
             text = log.userInput.toString() + "   ",
             fontSize = 24.sp,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(0.8f)
         )
 
         Text(
             text = log.targetSequence.toString()+ "   ",
             fontSize = 24.sp,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(0.8f)
         )
 
         Text(
             text = log.correctness.toString()+ "   ",
             fontSize = 24.sp,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(0.5f)
         )
 
-        Text(
-            text = log.timeStamp.toString()+ "   ",
-            fontSize = 24.sp,
-            modifier = Modifier.weight(1f)
-        )
 
     }
+
+    Text(
+        text = SimpleDateFormat("MMM d, yyyy  h:mm:ss a", Locale.getDefault())
+            .format(Date(log.timeStamp * 1000L)),
+        fontSize = 16.sp,
+        modifier = Modifier.padding(top = 4.dp)
+    )
 }
 
 @Preview(showBackground = true)
