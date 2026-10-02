@@ -102,7 +102,7 @@ fun attemptScreen(
 
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             itemsIndexed(attempts) { index, attempt ->
-                CityRow(attempt = attempt, savedAttempt = { selectedAttempt = it })
+                AttemptRow(attempt = attempt, savedAttempt = { selectedAttempt = it })
 
                 if (index < attempts.lastIndex) {
                     HorizontalDivider()
@@ -113,7 +113,7 @@ fun attemptScreen(
 }
 
 @Composable
-fun CityRow(attempt: Attempt, savedAttempt: (Attempt) -> Unit) {
+fun AttemptRow(attempt: Attempt, savedAttempt: (Attempt) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

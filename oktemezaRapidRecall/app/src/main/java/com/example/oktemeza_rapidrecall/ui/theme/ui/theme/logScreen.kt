@@ -39,11 +39,6 @@ fun logScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
-    var newLength by remember { mutableStateOf(1) }
-    var newUserInput by remember { mutableStateOf(1) }
-    var newTargetSequence by remember { mutableStateOf(1) }
-    var newCorrectness by remember { mutableStateOf(false) }
-    var newTimeStamp by remember { mutableStateOf(1) }
     var selectedLog by remember { mutableStateOf<Log?>(null) }
 
 
@@ -111,7 +106,7 @@ fun logScreen(
 
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             itemsIndexed(logs) { index, log ->
-                CityRow(log = log, savedLog = { selectedLog = it })
+                LogRow(log = log, savedLog = { selectedLog = it })
 
                 if (index < logs.lastIndex) {
                     HorizontalDivider()
@@ -122,7 +117,7 @@ fun logScreen(
 }
 
 @Composable
-fun CityRow(log: Log, savedLog: (Log) -> Unit) {
+fun LogRow(log: Log, savedLog: (Log) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -163,18 +158,3 @@ fun CityRow(log: Log, savedLog: (Log) -> Unit) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LogScreenPreview() {
-    OktemezaRapidRecallTheme() {
-        val navController = rememberNavController()
-        logScreen(
-            logs = listOf(
-                Log("0", "0", "0", false, 1)
-            ),
-            onAddLog = {},
-            modifier = Modifier,
-            navController)
-
-    }
-}

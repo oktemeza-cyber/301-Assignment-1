@@ -49,7 +49,6 @@ fun gameScreen(
     val sequenceToGuess =  remember {mutableStateListOf<String>()}
     var playerGuess by remember { mutableStateOf("") }
     var correct by remember { mutableStateOf(false) }
-    var timeStamp by remember{mutableStateOf(0)}
     //for updates in log and attempt
 
 
