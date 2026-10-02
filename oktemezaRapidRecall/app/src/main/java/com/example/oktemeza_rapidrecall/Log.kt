@@ -7,3 +7,4 @@ package com.example.oktemeza_rapidrecall
     val correctness: Boolean,
     val timeStamp: Int
 )
+//Class for Recording Log Information

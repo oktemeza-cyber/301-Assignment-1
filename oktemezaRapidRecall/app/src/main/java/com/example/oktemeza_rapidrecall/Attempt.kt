@@ -5,3 +5,4 @@ data class Attempt (
     val correctAttempt: Int,
     val accuracy: Float
 )
+//Class for recording Attempt information
